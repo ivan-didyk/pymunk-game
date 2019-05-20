@@ -1,0 +1,14 @@
+// Do not be worying about comments, whey are removed before parsing
+{
+  "startLevel": "Level 2", // Start level - represents ./levels/<startLevel>/ directory
+  "player": {
+    "acc": 0.1, // Acceleration of player
+    "decc": 0.07, // Deacceleration
+    "max": 10
+  },
+  "collid": {
+    "body": 1,
+    "coin": 2,
+    "portal": 3
+  }
+}
