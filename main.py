@@ -18,6 +18,7 @@ from lib.coin import Coin
 from lib.xjson import readcom
 from lib.player import Ball
 from lib.portal import Portal
+import lib.mmenu as mmenu
 
 # ========================= SETTINGS ========================= #
 
@@ -31,7 +32,7 @@ space.gravity = 0, 3600     # Set its gravity
 
 r = 0
 
-state = 'play'
+state = 'mmenu'
 
 
 # ========================= COLLISION CALLBACKS ========================= #
@@ -172,6 +173,7 @@ font = pygame.font.SysFont('Arial', 30)
 # ========================= GAME LOOP  ========================= #
 
 while run:
+    screen.fill((255, 255, 255))
     if state == 'play':
         pygame.time.delay(10)
         keys = pygame.key.get_pressed()
@@ -232,10 +234,6 @@ while run:
 
 
         #pygame.display.update()
-        pygame.display.flip()
-        for e in pygame.event.get():
-            if e.type == pygame.QUIT:
-                run = False
     elif state == 'redir':
         print('[ INFO ]   Redirecting to', level['portal']['target'])
         #space_c()
@@ -251,7 +249,14 @@ while run:
 
         state = 'play'
     elif state == 'mmenu':
+        mmenu.draw(screen)
+        if mmenu.state == 'move':
+            state = 'play'
 
+    pygame.display.flip()
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
+            run = False
 
 
 pygame.quit()
