@@ -251,7 +251,7 @@ while run:
 
         state = 'play'
     elif state == 'mmenu':
-        pass
+
 
 
 pygame.quit()
