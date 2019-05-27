@@ -3,7 +3,6 @@ from tkinter import *
 import tkinter.ttk as ttk
 import time, threading, pip._internal
 import urllib.request
-from os import system
 
 TITLE = 'Project installator'
 SUBHEADER = 'For Python project "pymunk-game"\nSource code: https://github.com/100ants/pymunk-game'
@@ -22,18 +21,10 @@ pmerr = None
 
 var1 = IntVar()
 
-def end():
-    root.destroy()
-    if var1.get() == 1:
-        print(sys.executable)
-        system('"' + sys.executable + '"' + START)
-
 def postinstall():
     subheader.config(text='Succesfully installed project')
     header.config(text='Finish!')
     pb.destroy()
-    st = Checkbutton(root, text=u'Start project', variable=var1, onvalue=1, offvalue=0)
-    st.place(x=300, y=120, anchor='center')
 
     okbtn = Button(root,
                    text='Finish installation',
