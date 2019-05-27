@@ -50,6 +50,7 @@
   },
   "portal": {
     "target": "Level 2",
-    "pos": [-100, -220]
+    "pos": [-100, -220],
+    "finish": true
   }
 }

@@ -19,6 +19,7 @@ from lib.xjson import readcom
 from lib.player import Ball
 from lib.portal import Portal
 import lib.mmenu as mmenu
+import lib.fmenu as fmenu
 
 # ========================= SETTINGS ========================= #
 
@@ -34,14 +35,18 @@ r = 0
 
 state = 'mmenu'
 
+money = 0
+
 
 # ========================= COLLISION CALLBACKS ========================= #
 
 
 def coin(arbiter: pymunk.Arbiter, space, data):
+    global money
     for i in arbiter.shapes:
-        if type(i) == pymunk.shapes.Poly:
+        if type(i) == pymunk.shapes.Poly and not i.body.collected:
             i.body.collected = True
+            money += 5
     return False
 
 
@@ -50,7 +55,10 @@ c.begin = coin
 
 def portalc(arbiter: pymunk.Arbiter, sp, data):
     global state
-    state = 'redir'
+    if level['portal']['finish']:
+        state = 'finish'
+    else:
+        state = 'redir'
     return False
 
 
@@ -229,9 +237,12 @@ while run:
 
         portal(screen, cam, pygame.Color('#555555'))
         car.draw(screen, (350, 250))
+
+
         #for i in lines:
         #    i.draw(Vector2(0, 300), screen, pygame.Color('#374d5f'))
 
+        screen.blit(font.render('Coins: ' + str(money), False, pygame.Color('#000000')), (500, 20))
 
         #pygame.display.update()
     elif state == 'redir':
@@ -252,11 +263,17 @@ while run:
         mmenu.draw(screen)
         if mmenu.state == 'move':
             state = 'play'
+    elif state == 'finish':
+        fmenu.draw(screen, money)
+        if fmenu.state == 'move':
+            state = 'redir'
+
 
     pygame.display.flip()
     for e in pygame.event.get():
         if e.type == pygame.QUIT:
             run = False
+
 
 
 pygame.quit()

@@ -27,6 +27,7 @@
   },
   "portal": {
     "target": "Level 1",
-    "pos": [0, -170]
+    "pos": [0, -170],
+    "finish": false
   }
 }
