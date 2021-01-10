@@ -1,6 +1,4 @@
-# Python project
-##### Using pymunk and pygame
-###### Dependencies:
-`pymunk` + `pygame` installed
+![Screenshot](screenshot.png)
 
-_by Ivan_SD_
+# Final python project for course
+##### Using pymunk and pygame
